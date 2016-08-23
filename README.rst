@@ -24,21 +24,27 @@ Usage
       -i INVENTORY [INVENTORY ...], --inventory INVENTORY [INVENTORY ...] EC2 filter values, space separated, could be private ip addresses or instance-id depending on filter type
       -t TAGS, --tags TAGS  EC2 tags in json format
 
+
 Installation
 -----------------
+
 ::
+
     $ pip install throwie
+
 
 Example
 -------------------
-Tag EC2 instances by specified private ip addresses
+Tag EC2 instances by specified private ip addresses:
 
 ::
+
     throwie -i 192.168.244.192 192.168.247.118 -f private-ip-address --tags '{"api-version": "v1.0.1"}'
 
-Tag EC2 instances by specified instance ids
+Tag EC2 instances by specified instance ids:
 
 ::
+
     throwie -i i-cex0d811 i-561s6370 -f instance-id --tags '{"api-version": "v1.0.1"}'
 
 
