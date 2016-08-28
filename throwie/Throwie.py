@@ -25,21 +25,21 @@ class Throwie(object):
                     'Values': filter_values
                 }
             ])]
-        except botocore.exceptions.ClientError as e:
+        except (botocore.exceptions.ClientError, botocore.exceptions.NoRegionError)  as e:
             print "Error: {}".format(e.response['Error']['Message'])
             exit(1)
 
     def _add_tags(self, tags):
         try:
             return self._ec2_client.create_tags(Resources=self._ec2_resourceIds, Tags=tags)
-        except botocore.exceptions.ClientError as e:
+        except (botocore.exceptions.ClientError, botocore.exceptions.NoRegionError) as e:
             print "Error: {}".format(e.response['Error']['Message'])
             exit(1)
 
     def _remove_tags(self, tags):
         try:
             return self._ec2_client.delete_tags(Resources=self._ec2_resourceIds, Tags=tags)
-        except botocore.exceptions.ClientError as e:
+        except (botocore.exceptions.ClientError, botocore.exceptions.NoRegionError) as e:
             print "Error: {}".format(e.response['Error']['Message'])
             exit(1)
 
